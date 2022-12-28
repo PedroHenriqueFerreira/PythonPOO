@@ -7,6 +7,9 @@ class Person:
     # Private
     self.__salary = 1000
   
+  def getFullName(self):
+    return f'{self.first_name} {self.last_name}'
+  
   @classmethod
   def createPerson(cls, *args):
     return cls(*args)
@@ -32,14 +35,28 @@ class Person:
     self.__salary = salary
 
 class User(Person):
-  def login(self):
-    print(f'User ${self.first_name} ${self.last_name} logged in')
+  def __init__(self, first_name, last_name, age, email, password):
+    super().__init__(first_name, last_name, age)
+    self.email = email
+    self.password = password
   
+  def getFullName(self):
+    return f'User: {self.first_name} {self.last_name},'
+  
+  def login(self):
+    print(f'{self.getFullName()} logged in')
+
+class Admin(User):
+  def getFullName(self):
+    return super(User, self).getFullName()
+
 john = Person('John', 'Harris', 30)
 
-mary = john.createPerson('Mary', 'Curie', 25)
+mary = john.createPerson('Mary', 'Cury', 25)
 
 print(vars(john))
 print(vars(mary))
 
-help(Person)
+# help(Admin)
+
+Admin('John', 'Harris', 30, 'john@gmail.com', '12345678').login()
