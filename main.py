@@ -20,18 +20,9 @@ class Person:
   def age(self, age):
     self._age = age
   
-john = Person('John', 'Harris')
+john = Person('John', 'Harris', 30)
 
-mary = john.createPerson('Mary', 'Curie')
+mary = john.createPerson('Mary', 'Curie', 25)
 
 print(vars(john))
 print(vars(mary))
-
-john.logger('Static method')
-
-
-mary.full_name = 'Complete name';
-
-mary._age = 20
-
-print(mary.full_name)
