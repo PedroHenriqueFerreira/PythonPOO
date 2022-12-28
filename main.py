@@ -1,4 +1,6 @@
-class Person:
+from abc import ABC, abstractmethod
+
+class Person(ABC):
   def __init__(self, first_name, last_name, age):
     self.first_name = first_name
     self.last_name = last_name
@@ -9,6 +11,9 @@ class Person:
   
   def getFullName(self):
     return f'{self.first_name} {self.last_name}'
+  
+  @abstractmethod
+  def login(self): ...
   
   @classmethod
   def createPerson(cls, *args):
@@ -50,13 +55,8 @@ class Admin(User):
   def getFullName(self):
     return super(User, self).getFullName()
 
-john = Person('John', 'Harris', 30)
-
-mary = john.createPerson('Mary', 'Cury', 25)
-
-print(vars(john))
-print(vars(mary))
-
 # help(Admin)
 
 Admin('John', 'Harris', 30, 'john@gmail.com', '12345678').login()
+
+print(Admin.mro())
